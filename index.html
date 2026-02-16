@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        header {
+            background: #0d6efd;
+            color: white;
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 10%;
+            background: linear-gradient(to right, #0d6efd, #00b4d8);
+            color: white;
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero-text h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .hero-text button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            background: #fff;
+            color: #0d6efd;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .hero-text button:hover {
+            background: #f1f1f1;
+        }
+
+        .features {
+            padding: 60px 10%;
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 40px;
+        }
+
+        .feature-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #0d6efd;
+        }
+
+        footer {
+            background: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Travel Manager</h1>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Packages</a>
+        <a href="#">Bookings</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <h2>Your Journey Starts Here</h2>
+        <p>
+            Plan, book, and manage your trips easily with our Travel Management System.
+            From weekend getaways to long vacations — everything in one place.
+        </p>
+        <button>Get Started</button>
+    </div>
+</section>
+
+<section class="features">
+    <h2>Why Choose Us?</h2>
+    <div class="feature-box">
+        <div class="card">
+            <h3>Easy Booking</h3>
+            <p>Book trips in just a few clicks with a smooth and simple process.</p>
+        </div>
+        <div class="card">
+            <h3>Best Packages</h3>
+            <p>Choose from a wide range of destinations at affordable prices.</p>
+        </div>
+        <div class="card">
+            <h3>24/7 Support</h3>
+            <p>We’re always here to help you whenever you need assistance.</p>
+        </div>
+        <div class="card">
+            <h3>Secure System</h3>
+            <p>Your data and payments are protected with high security.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Travel Management System | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
