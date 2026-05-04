@@ -3,201 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelHub - Travel Management System</title>
+    <title>City to Shore | India Travel and Tourism</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-globe"></i> TravelHub
-            </div>
+            <a class="nav-logo" href="#home" aria-label="City to Shore home">
+                <span class="logo-mark"><i class="fas fa-route"></i></span>
+                <span>City to Shore</span>
+            </a>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#search" class="nav-link">Search</a></li>
-                <li class="nav-item"><a href="#packages" class="nav-link">Packages</a></li>
-                <li class="nav-item"><a href="#bookings" class="nav-link">My Bookings</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#search" class="nav-link">Plan</a></li>
+                <li><a href="#packages" class="nav-link">Packages</a></li>
+                <li><a href="#experiences" class="nav-link">Experiences</a></li>
+                <li class="user-logged-in hidden"><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="auth-btns">
+                    <button class="nav-btn login-btn" type="button" onclick="openAuthModal('login')">Login</button>
+                    <button class="nav-btn signup-btn" type="button" onclick="openAuthModal('signup')">Sign Up</button>
+                </li>
+                <li class="user-profile hidden">
+                    <button class="profile-toggle" type="button">
+                        <i class="fas fa-user-circle"></i>
+                        <span id="userNameDisplay">Traveler</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#dashboard">My Dashboard</a>
+                        <a href="#packages">Plan More</a>
+                        <button type="button" onclick="handleLogout()">Logout</button>
+                    </div>
+                </li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="hamburger" type="button" aria-label="Open navigation">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Explore the World with TravelHub</h1>
-            <p>Discover amazing destinations and unforgettable experiences</p>
-            <button class="cta-btn" onclick="scrollToSearch()">Start Your Journey</button>
-        </div>
-    </section>
-
-    <!-- Search Section -->
-    <section class="search-section" id="search">
-        <div class="container">
-            <h2>Plan Your Perfect Trip</h2>
-            <div class="search-filters">
-                <div class="filter-group">
-                    <label>Trip Type</label>
-                    <select id="tripType" class="filter-input">
-                        <option value="flights">Flights</option>
-                        <option value="hotels">Hotels</option>
-                        <option value="tours">Tours</option>
-                        <option value="packages">Packages</option>
-                    </select>
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <p class="eyebrow">India journeys from metro pulse to sea breeze</p>
+                <h1>City to Shore</h1>
+                <p class="hero-copy">Build smart Indian holidays across heritage cities, hill stations, backwaters, beaches, food trails, festivals, and coastal escapes.</p>
+                <div class="hero-actions">
+                    <button class="cta-btn" type="button" onclick="scrollToSearch()">Plan My Trip</button>
+                    <a class="ghost-btn" href="#packages">Explore Packages</a>
                 </div>
-
-                <div class="filter-group">
-                    <label>From</label>
-                    <input type="text" id="from" class="filter-input" placeholder="Departure City">
-                </div>
-
-                <div class="filter-group">
-                    <label>To</label>
-                    <input type="text" id="to" class="filter-input" placeholder="Destination City">
-                </div>
-
-                <div class="filter-group">
-                    <label>Check-in</label>
-                    <input type="date" id="checkin" class="filter-input">
-                </div>
-
-                <div class="filter-group">
-                    <label>Check-out</label>
-                    <input type="date" id="checkout" class="filter-input">
-                </div>
-
-                <div class="filter-group">
-                    <label>Passengers</label>
-                    <input type="number" id="passengers" class="filter-input" value="1" min="1" max="9">
-                </div>
-
-                <button class="search-btn" onclick="searchTrips()">Search</button>
             </div>
-        </div>
-    </section>
-
-    <!-- Featured Packages Section -->
-    <section class="packages-section" id="packages">
-        <div class="container">
-            <h2>Featured Travel Packages</h2>
-            <div class="packages-grid" id="packagesGrid">
-                <!-- Packages will be loaded here by JavaScript -->
+            <div class="hero-panel" aria-label="Travel highlights">
+                <div><strong>24</strong><span>Curated routes</span></div>
+                <div><strong>18</strong><span>States covered</span></div>
+                <div><strong>4.8</strong><span>Guest rating</span></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- My Bookings Section -->
-    <section class="bookings-section" id="bookings">
-        <div class="container">
-            <h2>My Bookings</h2>
-            <div class="bookings-container" id="bookingsContainer">
-                <p class="no-bookings">No bookings yet. Start your adventure now!</p>
-            </div>
-        </div>
-    </section>
+        <section class="quick-strip" aria-label="Popular India travel themes">
+            <button type="button" onclick="quickFilter('heritage')"><i class="fas fa-landmark"></i> Heritage</button>
+            <button type="button" onclick="quickFilter('coast')"><i class="fas fa-umbrella-beach"></i> Coast</button>
+            <button type="button" onclick="quickFilter('wildlife')"><i class="fas fa-paw"></i> Wildlife</button>
+            <button type="button" onclick="quickFilter('wellness')"><i class="fas fa-spa"></i> Wellness</button>
+            <button type="button" onclick="quickFilter('food')"><i class="fas fa-utensils"></i> Food Trails</button>
+        </section>
 
-    <!-- Contact Section -->
-    <section class="contact-section" id="contact">
-        <div class="container">
-            <h2>Get in Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="info-card">
-                        <i class="fas fa-phone"></i>
-                        <h3>Call Us</h3>
-                        <p>+1 (555) 123-4567</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-envelope"></i>
-                        <h3>Email</h3>
-                        <p>info@travelhub.com</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h3>Address</h3>
-                        <p>123 Travel Street, Adventure City</p>
-                    </div>
+        <section class="search-section" id="search">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Trip builder</p>
+                    <h2>Find an Indian route that fits your mood, budget, and season</h2>
                 </div>
-
-                <form class="contact-form" onsubmit="handleContactForm(event)">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit" class="submit-btn">Send Message</button>
+                <form class="search-filters" onsubmit="searchTrips(event)">
+                    <div class="filter-group">
+                        <label for="from">From</label>
+                        <input type="text" id="from" class="filter-input" placeholder="Mumbai, Delhi, Bengaluru">
+                    </div>
+                    <div class="filter-group">
+                        <label for="to">Destination</label>
+                        <input type="text" id="to" class="filter-input" placeholder="Goa, Jaipur, Kerala">
+                    </div>
+                    <div class="filter-group">
+                        <label for="theme">Theme</label>
+                        <select id="theme" class="filter-input">
+                            <option value="all">All themes</option>
+                            <option value="heritage">Heritage</option>
+                            <option value="coast">Coast</option>
+                            <option value="wildlife">Wildlife</option>
+                            <option value="wellness">Wellness</option>
+                            <option value="food">Food trails</option>
+                            <option value="mountains">Mountains</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="budgetRange">Budget</label>
+                        <select id="budgetRange" class="filter-input">
+                            <option value="all">Any budget</option>
+                            <option value="25000">Under Rs.25,000</option>
+                            <option value="45000">Under Rs.45,000</option>
+                            <option value="70000">Under Rs.70,000</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="checkin">Start Date</label>
+                        <input type="date" id="checkin" class="filter-input">
+                    </div>
+                    <div class="filter-group">
+                        <label for="passengers">Travelers</label>
+                        <input type="number" id="passengers" class="filter-input" value="2" min="1" max="12">
+                    </div>
+                    <button class="search-btn" type="submit"><i class="fas fa-magnifying-glass"></i> Search Packages</button>
+                    <button class="reset-btn" type="button" onclick="resetSearch()">Reset</button>
                 </form>
+                <div class="smart-tools">
+                    <article>
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Season Guide</h3>
+                        <p id="seasonGuide">Choose a start date to see monsoon, winter, or summer travel tips.</p>
+                    </article>
+                    <article>
+                        <i class="fas fa-train-subway"></i>
+                        <h3>Route Mix</h3>
+                        <p>Packages combine flight, rail, cab, ferry, and guided walking experiences where useful.</p>
+                    </article>
+                    <article>
+                        <i class="fas fa-language"></i>
+                        <h3>Local Ready</h3>
+                        <p>Every plan includes regional food notes, temple etiquette, coast safety, and local transport hints.</p>
+                    </article>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>About TravelHub</h4>
-                    <p>Your trusted partner for unforgettable travel experiences worldwide.</p>
+        <section class="packages-section" id="packages">
+            <div class="container">
+                <div class="section-heading split">
+                    <div>
+                        <p class="eyebrow">Curated India packages</p>
+                        <h2>Real India travel routes with source-backed resources</h2>
+                    </div>
+                    <p id="resultCount" class="result-count">Showing all packages</p>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#packages">Packages</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
+                <div class="results-toolbar">
+                    <p class="source-note">Destination facts are linked to official tourism or government resources. Budget ranges are planning estimates, not live ticket or hotel prices.</p>
+                    <div class="sort-group">
+                        <label for="sortBy">Sort</label>
+                        <select id="sortBy" class="filter-input" onchange="sortPackages()">
+                            <option value="recommended">Recommended</option>
+                            <option value="budgetLow">Budget low to high</option>
+                            <option value="budgetHigh">Budget high to low</option>
+                            <option value="duration">Shortest first</option>
+                            <option value="rating">Highest rating</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                <div class="packages-grid" id="packagesGrid"></div>
+                <div class="compare-tray hidden" id="compareTray">
+                    <div>
+                        <strong>Compare routes</strong>
+                        <p id="compareNames">Choose up to 3 routes.</p>
+                    </div>
+                    <div class="compare-actions">
+                        <button type="button" class="reset-btn" onclick="clearCompare()">Clear</button>
+                        <button type="button" class="small-btn" onclick="openCompareModal()">Compare</button>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 TravelHub. All rights reserved.</p>
+        </section>
+
+        <section class="experiences-section" id="experiences">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Unique features</p>
+                    <h2>Built for Indian travel, not generic tourism</h2>
+                </div>
+                <div class="experience-grid">
+                    <article class="experience-card">
+                        <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=900&q=80" alt="Rajasthan palace architecture">
+                        <div>
+                            <h3>Festival Route Matcher</h3>
+                            <p>Pick a month and the app suggests routes around Holi, Durga Puja, Onam, Navratri, Hornbill, or Christmas markets.</p>
+                        </div>
+                    </article>
+                    <article class="experience-card">
+                        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80" alt="Kerala backwater boat">
+                        <div>
+                            <h3>Shore Safety Notes</h3>
+                            <p>Coastal packages include beach timing, ferry notes, rain watch, and family-friendly activity suggestions.</p>
+                        </div>
+                    </article>
+                    <article class="experience-card">
+                        <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=900&q=80" alt="Mumbai cityscape">
+                        <div>
+                            <h3>Smart Rupee Budget</h3>
+                            <p>Estimate transport, stay, meals, activities, shopping, and a buffer in INR before you book.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="festival-tool">
+                    <div>
+                        <p class="eyebrow">Month-based idea finder</p>
+                        <h3>Where should you go this month?</h3>
+                    </div>
+                    <select id="festivalMonth" class="filter-input" onchange="showFestivalIdea()">
+                        <option value="">Select a month</option>
+                        <option value="jan">January</option>
+                        <option value="mar">March</option>
+                        <option value="aug">August</option>
+                        <option value="oct">October</option>
+                        <option value="dec">December</option>
+                    </select>
+                    <p id="festivalResult">Select a month for a local India travel idea.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-section hidden" id="dashboard">
+            <div class="container">
+                <div class="section-heading split">
+                    <div>
+                        <p class="eyebrow">Your travel desk</p>
+                        <h2>Dashboard</h2>
+                    </div>
+                    <button class="small-btn" type="button" onclick="clearDemoData()">Clear Saved Data</button>
+                    <button class="small-btn" type="button" onclick="exportDashboard()">Export Plans</button>
+                    <button class="small-btn" type="button" onclick="window.print()">Print</button>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="stats-container">
+                        <div class="stat-card"><i class="fas fa-suitcase-rolling"></i><div><h3 id="totalBookings">0</h3><p>Saved Plans</p></div></div>
+                        <div class="stat-card"><i class="fas fa-heart"></i><div><h3 id="wishlistCount">0</h3><p>Wishlist</p></div></div>
+                        <div class="stat-card"><i class="fas fa-map-marked-alt"></i><div><h3 id="tripsPlanned">0</h3><p>Plans</p></div></div>
+                    </div>
+                    <div class="dashboard-main">
+                        <div class="card-header">
+                            <h3>Saved Trip Plans</h3>
+                            <a href="#packages" class="small-btn">New Trip</a>
+                        </div>
+                        <div id="dashboardBookings" class="dashboard-list"></div>
+                    </div>
+                    <div class="dashboard-features">
+                        <div class="tabs">
+                            <button class="tab-btn active" type="button" data-tab="itinerary" onclick="switchTab('itinerary')">Itinerary</button>
+                            <button class="tab-btn" type="button" data-tab="budget" onclick="switchTab('budget')">Budget</button>
+                            <button class="tab-btn" type="button" data-tab="wishlist" onclick="switchTab('wishlist')">Wishlist</button>
+                        </div>
+                        <div id="itinerary" class="tab-pane active">
+                            <h3>Day-wise Plan Builder</h3>
+                            <div class="planner-form">
+                                <input type="text" id="planDestination" placeholder="Destination or route">
+                                <input type="text" id="planActivity" placeholder="Activity, food, or place">
+                                <button onclick="createPlan()" type="button" class="add-btn">Add</button>
+                            </div>
+                            <div id="itineraryList"></div>
+                        </div>
+                        <div id="budget" class="tab-pane">
+                            <h3>Trip Budget Calculator</h3>
+                            <div class="budget-form">
+                                <label>Transport <input type="number" id="budgetTransport" value="12000" min="0"></label>
+                                <label>Stay <input type="number" id="budgetHotel" value="18000" min="0"></label>
+                                <label>Food <input type="number" id="budgetFood" value="7000" min="0"></label>
+                                <label>Activities <input type="number" id="budgetActivities" value="6000" min="0"></label>
+                                <label>Shopping <input type="number" id="budgetShopping" value="3000" min="0"></label>
+                                <label>Buffer % <input type="number" id="budgetBuffer" value="10" min="0" max="40"></label>
+                                <button onclick="calculateBudget()" type="button" class="calc-btn">Calculate Budget</button>
+                                <div class="budget-total" id="budgetTotal">Total: Rs.50,600</div>
+                            </div>
+                        </div>
+                        <div id="wishlist" class="tab-pane">
+                            <h3>Saved Packages</h3>
+                            <div id="wishlistItems" class="wishlist-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bookings-section" id="bookings">
+            <div class="container">
+                <h2>Saved Trip Plans</h2>
+                <div class="bookings-container" id="bookingsContainer">
+                    <p class="no-bookings">Login to view your saved India routes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Talk to a planner</p>
+                    <h2>Get a custom India itinerary</h2>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="info-card"><i class="fas fa-phone"></i><h3>Call</h3><p>+91 98765 43210</p></div>
+                        <div class="info-card"><i class="fas fa-envelope"></i><h3>Email</h3><p>hello@citytoshore.in</p></div>
+                        <div class="info-card"><i class="fas fa-location-dot"></i><h3>Office</h3><p>Mumbai, Maharashtra</p></div>
+                    </div>
+                    <form class="contact-form" onsubmit="handleContactForm(event)">
+                        <input type="text" id="contactName" placeholder="Your name" required>
+                        <input type="email" id="contactEmail" placeholder="Your email" required>
+                        <select id="contactInterest" required>
+                            <option value="">Interested in</option>
+                            <option>Family vacation</option>
+                            <option>Honeymoon</option>
+                            <option>Solo trip</option>
+                            <option>Corporate offsite</option>
+                        </select>
+                        <textarea id="contactMessage" placeholder="Tell us your dream route" rows="5" required></textarea>
+                        <button type="submit" class="submit-btn">Send Enquiry</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h4>City to Shore</h4>
+                <p>India-first travel planning for heritage cities, mountain towns, wildlife reserves, and coastal escapes.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="#search">Plan</a>
+                <a href="#packages">Packages</a>
+                <a href="#experiences">Features</a>
+            </div>
+            <div>
+                <h4>Follow</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
             </div>
         </div>
+        <p class="footer-bottom">&copy; 2026 City to Shore. Demo travel website for Indian tourism.</p>
     </footer>
 
-    <!-- Booking Modal -->
-    <div class="modal" id="bookingModal">
+    <div class="modal" id="authModal" aria-hidden="true">
         <div class="modal-content">
-            <span class="close" onclick="closeBookingModal()">&times;</span>
-            <h2>Complete Your Booking</h2>
-            <form onsubmit="completeBooking(event)">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="bookingName" required>
+            <button class="close" type="button" onclick="closeAuthModal()" aria-label="Close">&times;</button>
+            <h2 id="authTitle">Login</h2>
+            <p id="authSubtitle">Welcome back to City to Shore.</p>
+            <form onsubmit="handleAuth(event)">
+                <div class="form-group hidden" id="nameGroup">
+                    <label for="authName">Full Name</label>
+                    <input type="text" id="authName" autocomplete="name">
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="bookingEmail" required>
+                    <label for="authEmail">Email</label>
+                    <input type="email" id="authEmail" required autocomplete="email">
                 </div>
                 <div class="form-group">
-                    <label>Phone</label>
-                    <input type="tel" id="bookingPhone" required>
+                    <label for="authPassword">Password</label>
+                    <input type="password" id="authPassword" required autocomplete="current-password" minlength="4">
                 </div>
-                <div class="form-group">
-                    <label>Special Requests</label>
-                    <textarea id="bookingRequests" rows="4"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Confirm Booking</button>
+                <button type="submit" id="authSubmitBtn" class="submit-btn">Login</button>
+                <p class="auth-switch"><span id="authSwitchText">New here?</span> <button id="authSwitchBtn" type="button" onclick="toggleAuthMode()">Sign Up</button></p>
             </form>
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div class="toast" id="toast"></div>
+    <div class="modal" id="bookingModal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close" type="button" onclick="closeBookingModal()" aria-label="Close">&times;</button>
+            <h2>Save Real Trip Plan</h2>
+            <div class="booking-summary" id="bookingSummary"></div>
+            <form onsubmit="completeBooking(event)">
+                <div class="form-group"><label for="bookingName">Full Name</label><input type="text" id="bookingName" required></div>
+                <div class="form-group"><label for="bookingEmail">Email</label><input type="email" id="bookingEmail" required></div>
+                <div class="form-group"><label for="bookingPhone">Phone</label><input type="tel" id="bookingPhone" required pattern="[0-9 +()-]{8,}"></div>
+                <div class="form-group"><label for="bookingRequests">Special Requests</label><textarea id="bookingRequests" rows="3" placeholder="Food preference, senior citizen support, celebration, etc."></textarea></div>
+                <button type="submit" class="submit-btn">Save Plan Locally</button>
+            </form>
+        </div>
+    </div>
 
+    <div class="modal" id="detailsModal" aria-hidden="true">
+        <div class="modal-content wide-modal">
+            <button class="close" type="button" onclick="hideModal('detailsModal')" aria-label="Close">&times;</button>
+            <div id="detailsContent"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="compareModal" aria-hidden="true">
+        <div class="modal-content wide-modal">
+            <button class="close" type="button" onclick="hideModal('compareModal')" aria-label="Close">&times;</button>
+            <h2>Route Comparison</h2>
+            <div id="compareContent"></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="script.js"></script>
 </body>
 </html>
